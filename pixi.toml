@@ -1,0 +1,19 @@
+[project]
+authors = ["Hameer Abbasi <2190658+hameerabbasi@users.noreply.github.com>"]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "mlir-tutorial"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+clone = { cmd = "git submodule update --init --recursive", outputs = ["externals/llvm-project"] }
+build = { cmd = "scripts/build.sh", depends-on="clone", inputs = ["externals/llvm-project"], outputs = ["externals/llvm-project/build"] }
+test = { cmd = "scripts/test.sh", depends-on = ["build"], inputs = ["tests"], outputs = ["build-ninja"] }
+
+[dependencies]
+compilers = ">=1.9.0,<2"
+cmake = ">=3.31.4,<4"
+ninja = ">=1.12.1,<2"
+ccache = ">=4.10.1,<5"
+python = ">=3.13.1,<3.14"

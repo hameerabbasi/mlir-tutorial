@@ -17,3 +17,7 @@ bazel-testlogs
 # Compilation databases
 compile_commands.json
 tablegen_compile_commands.yml
+
+# pixi environments
+.pixi
+*.egg-info
