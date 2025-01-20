@@ -6,10 +6,15 @@ name = "mlir-tutorial"
 platforms = ["osx-arm64"]
 version = "0.1.0"
 
+[activation.env]
+PATH = "${PWD}/externals/llvm-project/build/bin:${PWD}/build-ninja/tools:${PATH}"
+
 [tasks]
-clone = { cmd = "git submodule update --init --recursive", outputs = ["externals/llvm-project"] }
-build = { cmd = "scripts/build.sh", depends-on="clone", inputs = ["externals/llvm-project"], outputs = ["externals/llvm-project/build"] }
-test = { cmd = "scripts/test.sh", depends-on = ["build"], inputs = ["tests"], outputs = ["build-ninja"] }
+clone = { cmd = "git submodule update --init --recursive" }
+build = { cmd = "scripts/build.sh", depends-on="clone" }
+test = { cmd = "scripts/test.sh", depends-on = ["build"] }
+
+lit = { cmd = "externals/llvm-project/build/bin/llvm-lit" }
 
 [dependencies]
 compilers = ">=1.9.0,<2"

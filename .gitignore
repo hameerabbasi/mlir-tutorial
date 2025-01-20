@@ -21,3 +21,7 @@ tablegen_compile_commands.yml
 # pixi environments
 .pixi
 *.egg-info
+
+# Hameer's MLIR experiments
+my_tests/Output
+my_tests/.*
